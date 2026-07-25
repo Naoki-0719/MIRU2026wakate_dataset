@@ -1,520 +1,931 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
+
+  <!-- =========================================================
+       ここから：検索結果やSNS共有時に使われる基本情報
+       ========================================================= -->
+
+  <!-- TODO: ページタイトルを変更してください -->
+  <meta
+    name="title"
+    content="MIRU2026若手プログラム：データセット構築研究に関する調査">
+
+  <!-- TODO: 調査内容を1～2文で説明してください -->
+  <meta
+    name="description"
+    content="MIRU2026若手プログラムにおけるデータセット構築研究について、関連論文、既存データセット、調査結果、今後の方針を整理したページです。">
+
+  <!-- TODO: 検索に使われそうなキーワードを追加してください -->
+  <meta
+    name="keywords"
+    content="MIRU2026, dataset construction, dataset survey, computer vision">
+
+  <!-- TODO: 氏名を変更してください -->
+  <meta name="author" content="Naoki Murakami">
+
   <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
+  <meta name="language" content="Japanese">
 
-  <!-- Twitter -->
+  <!-- SNS共有用 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MIRU2026 Young Researchers Program">
+
+  <!-- TODO: ページタイトルを変更してください -->
+  <meta
+    property="og:title"
+    content="MIRU2026若手プログラム：データセット構築研究に関する調査">
+
+  <!-- TODO: ページの説明を変更してください -->
+  <meta
+    property="og:description"
+    content="データセット構築研究に関する関連論文、既存データセット、調査結果を整理しています。">
+
+  <!-- TODO: GitHub Pages公開後のURLに変更してください -->
+  <meta
+    property="og:url"
+    content="https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPOSITORY_NAME/">
+
+  <!--
+    TODO: SNS共有用画像を使う場合は、以下のURLを変更してください。
+    画像を使わない場合、この1行は削除しても構いません。
+  -->
+  <meta
+    property="og:image"
+    content="https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPOSITORY_NAME/static/images/social_preview.png">
+
   <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
 
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <!-- ブラウザのタブに表示されるタイトル -->
+  <!-- TODO: ページタイトルを変更してください -->
+  <title>MIRU2026若手プログラム：データセット構築研究に関する調査</title>
+
+  <!-- =========================================================
+       ここまで：基本情報
+       ========================================================= -->
 
 
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-  
-  <!-- Favicon and App Icons -->
+  <!-- =========================================================
+       ここから：既存テンプレートのCSS
+       staticフォルダ内のファイルをそのまま利用します
+       ========================================================= -->
+
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
+
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
+
+  <!-- =========================================================
+       ここから：このページ専用の見た目
+       基本的には変更しなくても動きます
+       ========================================================= -->
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", "Noto Sans JP", sans-serif;
+      line-height: 1.8;
+    }
+
+    .publication-title {
+      line-height: 1.35;
+    }
+
+    .page-description {
+      max-width: 850px;
+      margin: 1.5rem auto 0;
+      line-height: 1.9;
+    }
+
+    .section-description {
+      margin-bottom: 1.5rem;
+    }
+
+    .content-card {
+      height: 100%;
+      padding: 1.5rem;
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      background: #ffffff;
+    }
+
+    .content-card h3 {
+      margin-bottom: 0.8rem;
+    }
+
+    .survey-table th {
+      white-space: nowrap;
+    }
+
+    .survey-table td {
+      vertical-align: top;
+      min-width: 110px;
+    }
+
+    .survey-table .title-cell {
+      min-width: 260px;
+      font-weight: 600;
+    }
+
+    .survey-table .summary-cell {
+      min-width: 300px;
+    }
+
+    .note-box {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-left: 5px solid #363636;
+      background: #f5f5f5;
+    }
+
+    .placeholder-box {
+      padding: 1.5rem;
+      border: 2px dashed #cfcfcf;
+      border-radius: 12px;
+      background: #fafafa;
+    }
+
+    .update-list time {
+      margin-right: 0.8rem;
+      font-weight: 600;
+    }
+
+    .footer {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      .publication-title {
+        font-size: 2rem !important;
       }
-    ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
-  }
-  </script>
+    }
+  </style>
+
+  <!-- =========================================================
+       ここまで：このページ専用の見た目
+       ========================================================= -->
 </head>
+
 <body>
 
-
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+  <!-- ページ上部へ戻るボタン -->
+  <button
+    class="scroll-to-top"
+    onclick="scrollToTop()"
+    title="ページ上部へ戻る"
+    aria-label="ページ上部へ戻る">
     <i class="fas fa-chevron-up"></i>
   </button>
 
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-
   <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
+
+    <!-- =======================================================
+         1. ページ上部
+         タイトル、氏名、所属、ページ内リンクを編集します
+         ======================================================= -->
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+
+              <!-- TODO: 研究・調査ページのタイトルを変更してください -->
+              <h1 class="title is-1 publication-title">
+                MIRU2026若手プログラム<br>
+                データセット構築研究に関する調査
+              </h1>
+
+              <!-- TODO: 氏名を変更してください -->
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Naoki Murakami</span>
+              </div>
+
+              <!-- TODO: 所属やプログラム名を変更してください -->
+              <div class="is-size-5 publication-authors">
                 <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
+                  Chukyo University<br>
+                  MIRU2026 若手プログラム
+                </span>
+              </div>
 
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Institution Name<br>Conference name and year</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
+              <!-- TODO: ページ全体の説明を書いてください -->
+              <p class="page-description">
+                本ページでは、データセット構築研究に関する調査結果を公開します。
+                関連論文、既存データセット、調査から得られた知見、
+                および今後のデータセット設計方針を整理します。
+              </p>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
+              <!-- ページ内リンク -->
+              <div class="column has-text-centered">
+                <div class="publication-links">
 
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                  <span class="link-block">
+                    <a
+                      href="#overview"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
+                        <i class="fas fa-info-circle"></i>
                       </span>
-                      <span>Supplementary</span>
+                      <span>調査概要</span>
                     </a>
                   </span>
 
-                  <!-- TODO: Replace with your GitHub repository URL -->
                   <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- TODO: Update with your arXiv paper ID -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
+                    <a
+                      href="#papers"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-alt"></i>
+                      </span>
+                      <span>論文リスト</span>
+                    </a>
                   </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
+
+                  <span class="link-block">
+                    <a
+                      href="#datasets"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-database"></i>
+                      </span>
+                      <span>データセット</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a
+                      href="#findings"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-lightbulb"></i>
+                      </span>
+                      <span>調査結果</span>
+                    </a>
+                  </span>
+
+                  <!--
+                    TODO: GitHubリポジトリを公開する場合は、
+                    YOUR_GITHUB_USERNAMEとYOUR_REPOSITORY_NAMEを変更してください。
+                    不要なら、このspan全体を削除してください。
+                  -->
+                  <span class="link-block">
+                    <a
+                      href="https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>GitHub</span>
+                    </a>
+                  </span>
+
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
+    <!-- =======================================================
+         2. 調査概要
+         調査の背景、目的、対象範囲を書きます
+         ======================================================= -->
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
-          </p>
+    <section class="section hero is-light" id="overview">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+
+            <h2 class="title is-3">調査概要</h2>
+
+            <div class="content has-text-justified">
+
+              <!-- TODO: 調査の背景を書いてください -->
+              <h3 class="title is-5">背景</h3>
+              <p>
+                ここに、なぜデータセット構築に関する調査を行うのかを記載します。
+                研究分野における現状、既存データセットの課題、
+                新しいデータセットが必要とされる理由などを説明してください。
+              </p>
+
+              <!-- TODO: 調査の目的を書いてください -->
+              <h3 class="title is-5">目的</h3>
+              <p>
+                ここに、本調査で明らかにしたいことを記載します。
+                例えば、既存研究の整理、データセット設計項目の抽出、
+                未解決課題の把握などを記載できます。
+              </p>
+
+              <!-- TODO: 調査対象を書いてください -->
+              <h3 class="title is-5">調査対象</h3>
+              <p>
+                ここに、対象とした論文、データセット、研究分野、
+                調査期間、検索方法などを記載します。
+              </p>
+
+              <div class="note-box">
+                <strong>補足：</strong>
+                本ページの内容は、研究の進展や追加調査に応じて更新します。
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+    </section>
 
 
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
+    <!-- =======================================================
+         3. 調査方針
+         どのような観点で文献やデータセットを調べたかを書きます
+         ======================================================= -->
+
+    <section class="section" id="survey-policy">
+      <div class="container is-max-desktop content">
+
+        <h2 class="title is-3">調査方針</h2>
+
+        <p class="section-description">
+          以下の項目は記入例です。今回の調査内容に合わせて変更してください。
+        </p>
+
+        <div class="columns is-multiline">
+
+          <div class="column is-half">
+            <div class="content-card">
+              <h3 class="title is-5">論文の選定基準</h3>
+
+              <!-- TODO: 実際の選定基準に変更してください -->
+              <ul>
+                <li>データセット構築を主題としている研究</li>
+                <li>データ収集方法が具体的に記述されている研究</li>
+                <li>アノテーション方法が説明されている研究</li>
+                <li>データセットが公開されている研究</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="content-card">
+              <h3 class="title is-5">比較項目</h3>
+
+              <!-- TODO: 実際の比較項目に変更してください -->
+              <ul>
+                <li>対象タスク</li>
+                <li>データ数</li>
+                <li>データ形式</li>
+                <li>収集方法</li>
+                <li>アノテーション形式</li>
+                <li>評価方法</li>
+                <li>公開条件・ライセンス</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
+    </section>
+
+
+    <!-- =======================================================
+         4. 関連論文リスト
+         1件追加する場合は、<tr>から</tr>までをコピーします
+         ======================================================= -->
+
+    <section class="section hero is-light" id="papers">
+      <div class="container is-max-desktop content">
+
+        <h2 class="title is-3">関連論文リスト</h2>
+
+        <p class="section-description">
+          調査した論文を一覧として整理します。
+          下の3行は記入例なので、実際の論文情報に置き換えてください。
+        </p>
+
+        <div class="table-container">
+          <table class="table is-striped is-hoverable is-fullwidth survey-table">
+
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Title</th>
+                <th>Authors</th>
+                <th>Venue</th>
+                <th>Topic</th>
+                <th>Summary</th>
+                <th>Links</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <!-- ===== 論文1件分：ここから ===== -->
+              <tr>
+                <td>20XX</td>
+
+                <td class="title-cell">
+                  論文タイトルを記載
+                </td>
+
+                <td>
+                  著者名を記載
+                </td>
+
+                <td>
+                  会議名・論文誌名
+                </td>
+
+                <td>
+                  データセット構築
+                </td>
+
+                <td class="summary-cell">
+                  研究の目的、データ収集方法、データセットの特徴、
+                  本調査との関係などを簡潔に記載します。
+                </td>
+
+                <td>
+                  <!-- TODO: 実際の論文URLに変更してください -->
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Paper
+                  </a>
+
+                  <br>
+
+                  <!--
+                    プロジェクトページがない場合は、
+                    以下のaタグを削除してください。
+                  -->
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Project
+                  </a>
+                </td>
+              </tr>
+              <!-- ===== 論文1件分：ここまで ===== -->
+
+
+              <!-- ===== 論文2件目の記入例 ===== -->
+              <tr>
+                <td>20XX</td>
+                <td class="title-cell">論文タイトルを記載</td>
+                <td>著者名を記載</td>
+                <td>会議名・論文誌名</td>
+                <td>アノテーション</td>
+                <td class="summary-cell">
+                  この論文から得られた知見を記載します。
+                </td>
+                <td>
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Paper
+                  </a>
+                </td>
+              </tr>
+
+
+              <!-- ===== 論文3件目の記入例 ===== -->
+              <tr>
+                <td>20XX</td>
+                <td class="title-cell">論文タイトルを記載</td>
+                <td>著者名を記載</td>
+                <td>会議名・論文誌名</td>
+                <td>データ評価</td>
+                <td class="summary-cell">
+                  データセットの評価方法や実験設計に関する内容を記載します。
+                </td>
+                <td>
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Paper
+                  </a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-box">
+          <strong>論文の追加方法：</strong>
+          HTML内の
+          <code>&lt;tr&gt;</code>
+          から
+          <code>&lt;/tr&gt;</code>
+          までをコピーし、表の
+          <code>&lt;tbody&gt;</code>
+          内に追加してください。
+        </div>
+
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
+    </section>
 
 
+    <!-- =======================================================
+         5. 既存データセットリスト
+         論文リストと同じ要領で行を追加できます
+         ======================================================= -->
+
+    <section class="section" id="datasets">
+      <div class="container is-max-desktop content">
+
+        <h2 class="title is-3">既存データセット一覧</h2>
+
+        <p class="section-description">
+          調査対象となった既存データセットを比較します。
+          比較項目は研究内容に合わせて自由に変更してください。
+        </p>
+
+        <div class="table-container">
+          <table class="table is-striped is-hoverable is-fullwidth survey-table">
+
+            <thead>
+              <tr>
+                <th>Dataset</th>
+                <th>Year</th>
+                <th>Task</th>
+                <th>Data Type</th>
+                <th>Scale</th>
+                <th>Annotation</th>
+                <th>License</th>
+                <th>Links</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <!-- ===== データセット1件分：ここから ===== -->
+              <tr>
+                <td class="title-cell">
+                  データセット名
+                </td>
+
+                <td>20XX</td>
+
+                <td>
+                  対象タスク
+                </td>
+
+                <td>
+                  画像・動画・音声など
+                </td>
+
+                <td>
+                  データ数やクラス数
+                </td>
+
+                <td>
+                  ラベルやアノテーション形式
+                </td>
+
+                <td>
+                  ライセンス
+                </td>
+
+                <td>
+                  <!-- TODO: 実際のURLに変更してください -->
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Website
+                  </a>
+                </td>
+              </tr>
+              <!-- ===== データセット1件分：ここまで ===== -->
 
 
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
+              <!-- ===== データセット2件目の記入例 ===== -->
+              <tr>
+                <td class="title-cell">データセット名</td>
+                <td>20XX</td>
+                <td>対象タスク</td>
+                <td>データ形式</td>
+                <td>規模</td>
+                <td>アノテーション形式</td>
+                <td>ライセンス</td>
+                <td>
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Website
+                  </a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         6. 調査結果
+         文献調査から分かったことを要点別に整理します
+         ======================================================= -->
+
+    <section class="section hero is-light" id="findings">
+      <div class="container is-max-desktop content">
+
+        <h2 class="title is-3">調査結果</h2>
+
+        <p class="section-description">
+          以下は構成例です。実際の調査結果に合わせて見出しと文章を変更してください。
+        </p>
+
+        <div class="columns is-multiline">
+
+          <div class="column is-one-third">
+            <div class="content-card">
+
+              <!-- TODO: 見出しと内容を変更してください -->
+              <h3 class="title is-5">データ収集</h3>
+
+              <p>
+                調査から明らかになったデータ収集方法の傾向、
+                必要な条件、注意点などを記載します。
+              </p>
+            </div>
+          </div>
+
+          <div class="column is-one-third">
+            <div class="content-card">
+
+              <!-- TODO: 見出しと内容を変更してください -->
+              <h3 class="title is-5">アノテーション</h3>
+
+              <p>
+                ラベル形式、アノテーション手順、品質管理方法などに関する
+                調査結果を記載します。
+              </p>
+            </div>
+          </div>
+
+          <div class="column is-one-third">
+            <div class="content-card">
+
+              <!-- TODO: 見出しと内容を変更してください -->
+              <h3 class="title is-5">評価方法</h3>
+
+              <p>
+                データセットの有効性を確認するための評価方法、
+                ベースライン、指標などを記載します。
+              </p>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="content-card">
+
+              <!-- TODO: 見出しと内容を変更してください -->
+              <h3 class="title is-5">既存データセットの課題</h3>
+
+              <p>
+                既存データセットでは十分に扱われていない条件や、
+                比較が難しい点、公開上の制約などを記載します。
+              </p>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="content-card">
+
+              <!-- TODO: 見出しと内容を変更してください -->
+              <h3 class="title is-5">新規データセットに必要な要素</h3>
+
+              <p>
+                調査結果を踏まえ、新しく構築するデータセットに必要と考えられる
+                要件を記載します。
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         7. データセット構築案
+         現時点の案や未確定事項を整理します
+         ======================================================= -->
+
+    <section class="section" id="dataset-plan">
+      <div class="container is-max-desktop content">
+
+        <h2 class="title is-3">データセット構築案</h2>
+
+        <p class="section-description">
+          ここでは、調査結果を踏まえた現時点のデータセット構築案を整理します。
+        </p>
+
+        <div class="columns is-multiline">
+
+          <div class="column is-half">
+            <div class="content-card">
+              <h3 class="title is-5">対象タスク</h3>
+
+              <!-- TODO: 対象タスクを書いてください -->
+              <p>
+                ここに、データセットが対象とするタスクを記載します。
+              </p>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="content-card">
+              <h3 class="title is-5">収集するデータ</h3>
+
+              <!-- TODO: データ形式を書いてください -->
+              <p>
+                ここに、収集するデータの種類、形式、撮影・計測条件などを記載します。
+              </p>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="content-card">
+              <h3 class="title is-5">アノテーション</h3>
+
+              <!-- TODO: アノテーション方法を書いてください -->
+              <p>
+                ここに、付与するラベル、アノテーション単位、
+                作業手順、品質管理方法などを記載します。
+              </p>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="content-card">
+              <h3 class="title is-5">評価方法</h3>
+
+              <!-- TODO: 評価方法を書いてください -->
+              <p>
+                ここに、データセットの評価指標、ベースライン、
+                データ分割方法などを記載します。
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TODO: 未確定事項を記載してください -->
+        <div class="placeholder-box">
+          <h3 class="title is-5">未確定事項</h3>
+          <ul>
+            <li>データ数</li>
+            <li>対象カテゴリ数</li>
+            <li>収集環境</li>
+            <li>アノテーション方法</li>
+            <li>公開方法</li>
+            <li>ライセンス</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         8. 今後の予定
+         調査やデータセット構築の次の作業を書きます
+         ======================================================= -->
+
+    <section class="section hero is-light" id="future-work">
+      <div class="container is-max-desktop content">
+
+        <h2 class="title is-3">今後の予定</h2>
+
+        <!-- TODO: 実際の予定に変更してください -->
+        <ul>
+          <li>関連論文の追加調査</li>
+          <li>既存データセットの比較項目の整理</li>
+          <li>データ収集条件の具体化</li>
+          <li>予備的なデータ収集</li>
+          <li>アノテーション方針の検討</li>
+          <li>評価プロトコルの設計</li>
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         9. 更新履歴
+         ページを更新した日付と内容を記録します
+         ======================================================= -->
+
+    <section class="section" id="updates">
+      <div class="container is-max-desktop content">
+
+        <h2 class="title is-3">更新履歴</h2>
+
+        <ul class="update-list">
+
+          <!-- TODO: 公開日に変更してください -->
+          <li>
+            <time datetime="2026-07-25">2026-07-25</time>
+            調査ページを作成。
+          </li>
+
+          <!--
+            更新時は、以下をコピーして追加してください。
+
+            <li>
+              <time datetime="2026-08-01">2026-08-01</time>
+              関連論文を追加。
+            </li>
+          -->
+
+        </ul>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       10. フッター
+       連絡先とテンプレートの出典を記載します
+       ========================================================= -->
+
+  <footer class="footer">
     <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- TODO: Replace with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+
+            <!--
+              TODO: メールアドレスを変更してください。
+              公開したくない場合、このpタグ全体を削除してください。
+            -->
+            <p>
+              Contact:
+              <a href="mailto:YOUR_EMAIL_ADDRESS">
+                YOUR_EMAIL_ADDRESS
+              </a>
+            </p>
+
+            <!--
+              テンプレートの出典です。
+              原則として残しておくことを推奨します。
+            -->
+            <p>
+              This page was built using the
+              <a
+                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                target="_blank"
+                rel="noopener noreferrer">
+                Academic Project Page Template
+              </a>,
+              adopted from the
+              <a
+                href="https://nerfies.github.io"
+                target="_blank"
+                rel="noopener noreferrer">
+                Nerfies project page
+              </a>.
+            </p>
+
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- End youtube video -->
+  </footer>
 
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
-
-
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
-
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+</body>
+</html>
