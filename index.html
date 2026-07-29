@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- =========================================================
+       基本情報
+       GitHub Pagesで公開する際は，title，description，og:urlを必要に応じて変更してください．
+       ========================================================= -->
+  <title>採択されるデータセット論文を書くために | MIRU2026 若手プログラム</title>
+  <meta
+    name="description"
+    content="MIRU2026若手プログラム『データセット構築研究』チームによる，採択されるデータセット論文の特徴に関する調査結果を公開するプロジェクトページです．">
+  <meta
+    name="keywords"
+    content="MIRU2026, データセット構築, データセット論文, OpenReview, NeurIPS, サーベイ">
+  <meta
+    name="author"
+    content="村上尚生, 馬上凌, 原涼成, 大石康太郎, 丸山虹樹">
+  <meta name="robots" content="index, follow">
+
+  <!-- SNS共有用．公開URLが決まったら og:url を変更してください． -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MIRU2026 若手プログラム">
+  <meta property="og:title" content="採択されるデータセット論文を書くために">
+  <meta
+    property="og:description"
+    content="トップカンファレンスのデータセット論文とOpenReviewを分析し，採択される論文の特徴を整理しました．">
+  <meta property="og:url" content="https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPOSITORY_NAME/">
+  <meta name="twitter:card" content="summary">
+
+  <!-- =========================================================
+       ページ全体の見た目
+       色を変更するときは，:root 内の変数を編集するとページ全体に反映されます．
+       ========================================================= -->
+  <style>
+    :root {
+      --primary: #0b6f78;
+      --primary-dark: #07545b;
+      --primary-light: #e7f4f4;
+      --accent: #c58a2a;
+      --ink: #172126;
+      --muted: #5c6a70;
+      --line: #dce4e6;
+      --surface: #ffffff;
+      --surface-alt: #f5f8f8;
+      --shadow: 0 16px 45px rgba(18, 48, 55, 0.09);
+      --radius: 18px;
+      --poster: #31828a;
+      --spotlight: #64aeb3;
+      --oral: #b78a2f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--surface);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      line-height: 1.85;
+    }
+
+    a {
+      color: var(--primary-dark);
+    }
+
+    img,
+    object {
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .narrow {
+      width: min(900px, 100%);
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 86px 0;
+      scroll-margin-top: 70px;
+    }
+
+    .section.alt {
+      background: var(--surface-alt);
+    }
+
+    .section-heading {
+      margin: 0 0 14px;
+      font-size: clamp(1.75rem, 3vw, 2.45rem);
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+    }
+
+    .section-lead {
+      max-width: 850px;
+      margin: 0 0 34px;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--primary-dark);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(220, 228, 230, 0.85);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      display: flex;
+      min-height: 66px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: var(--ink);
+      font-size: 0.98rem;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      padding: 8px 10px;
+      border-radius: 9px;
+      color: var(--muted);
+      font-size: 0.87rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--primary-dark);
+      background: var(--primary-light);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 104px 0 92px;
+      background:
+        radial-gradient(circle at 85% 14%, rgba(197, 138, 42, 0.15), transparent 27%),
+        radial-gradient(circle at 10% 72%, rgba(11, 111, 120, 0.13), transparent 33%),
+        linear-gradient(145deg, #f8fbfb 0%, #ffffff 56%, #eef7f7 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(310px, 0.65fr);
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin: 0 0 22px;
+      font-size: clamp(2.4rem, 5.5vw, 4.7rem);
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-description {
+      max-width: 780px;
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.5vw, 1.16rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.94rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
+      color: #fff;
+      background: var(--primary);
+      box-shadow: 0 12px 30px rgba(11, 111, 120, 0.21);
+    }
+
+    .button.secondary {
+      border-color: var(--line);
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .team-card {
+      padding: 28px;
+      border: 1px solid rgba(220, 228, 230, 0.85);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: var(--shadow);
+    }
+
+    .team-card h2 {
+      margin: 0 0 14px;
+      color: var(--primary-dark);
+      font-size: 1rem;
+    }
+
+    .team-list {
+      display: grid;
+      gap: 11px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .team-list li {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 9px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .team-list li:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .team-list strong {
+      font-size: 0.98rem;
+    }
+
+    .team-list span {
+      color: var(--muted);
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .overview-grid,
+    .stage-grid,
+    .finding-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      height: 100%;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 8px 25px rgba(18, 48, 55, 0.05);
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      color: var(--primary-dark);
+      font-size: 1.13rem;
+      line-height: 1.45;
+    }
+
+    .card p:last-child,
+    .card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .card ul {
+      padding-left: 1.25em;
+    }
+
+    .analysis-scope {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 30px 0 42px;
+    }
+
+    .scope-item {
+      padding: 20px;
+      border-radius: 14px;
+      color: #fff;
+      background: var(--primary-dark);
+      text-align: center;
+    }
+
+    .scope-value {
+      display: block;
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .scope-label {
+      display: block;
+      margin-top: 5px;
+      font-size: 0.88rem;
+      opacity: 0.9;
+    }
+
+    .analysis-block {
+      margin-top: 28px;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .analysis-block + .analysis-block {
+      margin-top: 26px;
+    }
+
+    .analysis-block h3 {
+      margin: 0 0 8px;
+      font-size: clamp(1.25rem, 2vw, 1.55rem);
+    }
+
+    .analysis-note {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .analysis-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 42px;
+      align-items: start;
+    }
+
+    .metric-list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: minmax(125px, 180px) 1fr 52px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .metric-label {
+      font-size: 0.91rem;
+      font-weight: 750;
+    }
+
+    .metric-track {
+      height: 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e8eeee;
+    }
+
+    .metric-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+      transition: width 0.6s ease;
+    }
+
+    .metric-value {
+      font-variant-numeric: tabular-nums;
+      font-size: 0.9rem;
+      font-weight: 850;
+      text-align: right;
+    }
+
+    .insight {
+      padding: 24px;
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      background: #fff9ed;
+    }
+
+    .insight h4 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+
+    .insight p {
+      margin: 0;
+      color: #4e4637;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .compare-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface-alt);
+    }
+
+    .compare-card h4 {
+      margin: 0 0 15px;
+      font-size: 0.98rem;
+    }
+
+    .compare-item {
+      display: grid;
+      grid-template-columns: 1fr 56px;
+      gap: 12px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .compare-item:first-of-type {
+      margin-top: 0;
+    }
+
+    .compare-line {
+      height: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #dfe8e8;
+    }
+
+    .compare-line span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--primary);
+    }
+
+    .compare-name {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .tier-legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.83rem;
+      font-weight: 700;
+    }
+
+    .legend-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 6px;
+      border-radius: 50%;
+    }
+
+    .tier-chart {
+      display: grid;
+      gap: 24px;
+    }
+
+    .tier-group h4 {
+      margin: 0 0 9px;
+      font-size: 0.94rem;
+    }
+
+    .tier-bar-row {
+      display: grid;
+      grid-template-columns: 78px 1fr 44px;
+      gap: 10px;
+      align-items: center;
+      margin-top: 7px;
+    }
+
+    .tier-track {
+      height: 10px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e8eeee;
+    }
+
+    .tier-fill {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+    }
+
+    .poster-color {
+      background: var(--poster);
+    }
+
+    .spotlight-color {
+      background: var(--spotlight);
+    }
+
+    .oral-color {
+      background: var(--oral);
+    }
+
+    .filter-panel {
+      margin-bottom: 24px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 8px 25px rgba(18, 48, 55, 0.05);
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(4, minmax(135px, 0.75fr));
+      gap: 12px;
+      align-items: end;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 0.79rem;
+      font-weight: 800;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 44px;
+      padding: 9px 12px;
+      border: 1px solid #cbd7d9;
+      border-radius: 10px;
+      color: var(--ink);
+      background: #fff;
+      font: inherit;
+      font-size: 0.9rem;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--primary);
+      outline: 3px solid rgba(11, 111, 120, 0.12);
+    }
+
+    .filter-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .result-count {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .reset-button {
+      min-height: 38px;
+      padding: 7px 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      background: #fff;
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 8px 25px rgba(18, 48, 55, 0.05);
+    }
+
+    table {
+      width: 100%;
+      min-width: 1260px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 15px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: #fff;
+      background: var(--primary-dark);
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr:hover {
+      background: #f8fbfb;
+    }
+
+    td {
+      font-size: 0.88rem;
+    }
+
+    .paper-title {
+      min-width: 240px;
+      font-weight: 800;
+      line-height: 1.55;
+    }
+
+    .authors-cell {
+      min-width: 210px;
+    }
+
+    .easy-point-cell {
+      min-width: 280px;
+    }
+
+    .paper-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 11px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .empty-state {
+      display: none;
+      padding: 34px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .code-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      color: var(--muted);
+      background: var(--primary-light);
+      font-size: 0.9rem;
+    }
+
+    .stage-number {
+      display: inline-grid;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 14px;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--primary);
+      font-weight: 900;
+    }
+
+    .poster-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    .poster-preview {
+      min-height: 690px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #eef2f2;
+      box-shadow: var(--shadow);
+    }
+
+    .poster-preview object {
+      display: block;
+      width: 100%;
+      height: 690px;
+    }
+
+    .poster-info {
+      padding: 28px;
+      border-radius: var(--radius);
+      color: #fff;
+      background: var(--primary-dark);
+    }
+
+    .poster-info h3 {
+      margin-top: 0;
+      font-size: 1.35rem;
+      line-height: 1.45;
+    }
+
+    .poster-info p {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .poster-info .button {
+      width: 100%;
+      margin-top: 10px;
+      color: var(--primary-dark);
+      background: #fff;
+    }
+
+    .notice {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border: 1px solid #e9d8b2;
+      border-radius: 12px;
+      color: #5b4a2f;
+      background: #fff9ed;
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      background: #fff;
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    .scroll-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 80;
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--primary);
+      box-shadow: 0 10px 25px rgba(11, 111, 120, 0.25);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .scroll-top.visible {
+      display: block;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .analysis-layout,
+      .poster-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .overview-grid,
+      .stage-grid,
+      .finding-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .field.search-field {
+        grid-column: 1 / -1;
+      }
+
+      .poster-preview,
+      .poster-preview object {
+        min-height: 560px;
+        height: 560px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .section {
+        padding: 66px 0;
+      }
+
+      .nav {
+        min-height: 58px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 72px 0 68px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 11vw, 3.3rem);
+      }
+
+      .analysis-scope,
+      .compare-grid,
+      .filter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-row {
+        grid-template-columns: 105px 1fr 46px;
+      }
+
+      .analysis-block {
+        padding: 23px;
+      }
+
+      .filter-footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .poster-preview,
+      .poster-preview object {
+        min-height: 420px;
+        height: 420px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =========================================================
+       ページ上部のナビゲーション
+       セクションを追加・削除したときは，ここのリンクも合わせて編集してください．
+       ========================================================= -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">MIRU2026 × データセット構築研究</a>
+      <nav class="nav-links" aria-label="ページ内ナビゲーション">
+        <a href="#overview">概要</a>
+        <a href="#openreview">OpenReview分析</a>
+        <a href="#papers">文献リスト</a>
+        <a href="#guidelines">論文構築の観点</a>
+        <a href="#poster">ポスター</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- =======================================================
+         ヒーロー部分：タイトルとチーム情報
+         発表タイトルやメンバーが変わった場合は，このブロックを編集してください．
+         ======================================================= -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">MIRU2026 若手プログラム｜データセット構築研究</span>
+          <h1>採択される<br>データセット論文を書くために</h1>
+          <p class="hero-description">
+            トップカンファレンスで発表されたデータセット論文とOpenReviewの査読内容を分析し，
+            採択される論文に共通する特徴を，データセットの「構築前」「構築中」「構築後」の観点から整理しました．
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#openreview">統計分析を見る</a>
+            <a
+              class="button secondary"
+              href="static/pdfs/miru2026_dataset_poster.pdf"
+              target="_blank"
+              rel="noopener noreferrer">
+              ポスターPDFを開く
+            </a>
+          </div>
+        </div>
+
+        <!-- チームメンバーを追加するときは，li要素をコピーしてください． -->
+        <aside class="team-card" aria-label="チームメンバー">
+          <h2>Team members</h2>
+          <ul class="team-list">
+            <li><strong>村上尚生</strong><span>中京大学</span></li>
+            <li><strong>馬上凌</strong><span>東京大学</span></li>
+            <li><strong>原涼成</strong><span>慶應義塾大学</span></li>
+            <li><strong>大石康太郎</strong><span>慶應義塾大学</span></li>
+            <li><strong>丸山虹樹</strong><span>個人</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         調査概要
+         ポスターの「調査目的」「調査方法」「調査結果」に対応します．
+         ======================================================= -->
+    <section class="section" id="overview">
+      <div class="container">
+        <span class="eyebrow">Overview</span>
+        <h2 class="section-heading">調査概要</h2>
+        <p class="section-lead">
+          データセット論文は，単に新しいデータを公開するだけでは採択されません．
+          本調査では，査読者が何を評価し，どこを問題視しているのかを定量・定性の両面から調べました．
+        </p>
+
+        <div class="overview-grid">
+          <article class="card">
+            <h3>調査目的</h3>
+            <p>
+              トップカンファレンスで発表されたデータセット論文を分析し，採択される論文の特徴を明らかにします．
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>調査方法</h3>
+            <p>
+              OpenReviewで評価された項目を集計するとともに，論文を「構築前」「構築中」「構築後」の3段階から分析し，
+              各段階で重視される記載内容を整理しました．
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>調査結果</h3>
+            <p>
+              データセットの新規性だけでなく，評価実験の厳密さ，公開性，アノテーション品質など，
+              データセット全体の作り込みが採否を左右することが分かりました．
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         NeurIPS OpenReview 統計分析
+         数値を変更するときは，各要素の data-percent 属性を書き換えてください．
+         棒グラフの幅と表示値はJavaScriptで自動更新されます．
+         ======================================================= -->
+    <section class="section alt" id="openreview">
+      <div class="container">
+        <span class="eyebrow">NeurIPS Datasets &amp; Benchmarks Track 2024–2025</span>
+        <h2 class="section-heading">OpenReviewの統計分析</h2>
+        <p class="section-lead">
+          NeurIPS Datasets &amp; Benchmarks TrackのOpenReviewを対象に，採択論文で称賛された要素，
+          新手法の有無，発表区分ごとの評価傾向を集計しました．
+        </p>
+
+        <!-- 調査対象数を変更するときは，以下の3つの数値を書き換えてください． -->
+        <div class="analysis-scope" aria-label="分析対象">
+          <div class="scope-item">
+            <span class="scope-value">1,117</span>
+            <span class="scope-label">投稿</span>
+          </div>
+          <div class="scope-item">
+            <span class="scope-value">956</span>
+            <span class="scope-label">採択論文</span>
+          </div>
+          <div class="scope-item">
+            <span class="scope-value">4,246</span>
+            <span class="scope-label">査読</span>
+          </div>
+        </div>
+
+        <!-- 1．採択の決め手 -->
+        <article class="analysis-block">
+          <h3>1．採択の決め手：新規性「だけ」では通らない</h3>
+          <p class="analysis-note">
+            各割合は，採択論文の査読において，該当要素が肯定的に評価された割合です．
+          </p>
+
+          <div class="analysis-layout">
+            <div class="metric-list" aria-label="採択論文で称賛された要素">
+              <!-- 項目を追加するときは metric-row をコピーし，data-percent と名称を変更してください． -->
+              <div class="metric-row" data-percent="59">
+                <span class="metric-label">新規性</span>
+                <span class="metric-track"><span class="metric-fill"></span></span>
+                <span class="metric-value"></span>
+              </div>
+              <div class="metric-row" data-percent="46">
+                <span class="metric-label">評価の厳密さ</span>
+                <span class="metric-track"><span class="metric-fill"></span></span>
+                <span class="metric-value"></span>
+              </div>
+              <div class="metric-row" data-percent="31">
+                <span class="metric-label">再現性・公開</span>
+                <span class="metric-track"><span class="metric-fill"></span></span>
+                <span class="metric-value"></span>
+              </div>
+              <div class="metric-row" data-percent="27">
+                <span class="metric-label">実世界での有用性</span>
+                <span class="metric-track"><span class="metric-fill"></span></span>
+                <span class="metric-value"></span>
+              </div>
+              <div class="metric-row" data-percent="25">
+                <span class="metric-label">規模</span>
+                <span class="metric-track"><span class="metric-fill"></span></span>
+                <span class="metric-value"></span>
+              </div>
+              <div class="metric-row" data-percent="24">
+                <span class="metric-label">アノテーション品質</span>
+                <span class="metric-track"><span class="metric-fill"></span></span>
+                <span class="metric-value"></span>
+              </div>
+            </div>
+
+            <div class="insight">
+              <h4>この結果から分かったこと</h4>
+              <p>
+                新規性は最も多く評価されており，採択の土台となる重要な要素です．
+                しかし，評価の厳密さ，再現性・公開，実世界での有用性，規模，アノテーション品質も幅広く評価されています．
+                したがって，独自性のあるデータを提示するだけでは不十分であり，厳密な検証と第三者が利用・再現できる形での公開を組み合わせることが重要です．
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2．新手法の有無 -->
+        <article class="analysis-block">
+          <h3>2．データのみ／新手法も提案：手法を足しても「得」にならない</h3>
+          <p class="analysis-note">
+            新手法を提案した論文と，データ資源を主貢献とする論文を比較しています．
+          </p>
+
+          <div class="analysis-layout">
+            <div class="compare-grid">
+              <section class="compare-card">
+                <h4>手法を提案した論文の割合</h4>
+                <div class="compare-item">
+                  <div>
+                    <span class="compare-name">採択 956本</span>
+                    <div class="compare-line"><span style="width:31%"></span></div>
+                  </div>
+                  <strong>31%</strong>
+                </div>
+                <div class="compare-item">
+                  <div>
+                    <span class="compare-name">不採択（公開）</span>
+                    <div class="compare-line"><span style="width:30%"></span></div>
+                  </div>
+                  <strong>30%</strong>
+                </div>
+              </section>
+
+              <section class="compare-card">
+                <h4>Spotlight／Oral到達率</h4>
+                <div class="compare-item">
+                  <div>
+                    <span class="compare-name">手法あり</span>
+                    <div class="compare-line"><span style="width:13.8%"></span></div>
+                  </div>
+                  <strong>13.8%</strong>
+                </div>
+                <div class="compare-item">
+                  <div>
+                    <span class="compare-name">資源のみ</span>
+                    <div class="compare-line"><span style="width:13.4%"></span></div>
+                  </div>
+                  <strong>13.4%</strong>
+                </div>
+              </section>
+
+              <section class="compare-card">
+                <h4>新規性・方法論が評価された割合</h4>
+                <div class="compare-item">
+                  <div>
+                    <span class="compare-name">手法あり</span>
+                    <div class="compare-line"><span style="width:73%"></span></div>
+                  </div>
+                  <strong>73%</strong>
+                </div>
+                <div class="compare-item">
+                  <div>
+                    <span class="compare-name">資源のみ</span>
+                    <div class="compare-line"><span style="width:63%"></span></div>
+                  </div>
+                  <strong>63%</strong>
+                </div>
+              </section>
+
+              <section class="compare-card">
+                <h4>方法論が批判された割合</h4>
+                <div class="compare-item">
+                  <div>
+                    <span class="compare-name">手法あり</span>
+                    <div class="compare-line"><span style="width:75%"></span></div>
+                  </div>
+                  <strong>75%</strong>
+                </div>
+                <div class="compare-item">
+                  <div>
+                    <span class="compare-name">資源のみ</span>
+                    <div class="compare-line"><span style="width:66%"></span></div>
+                  </div>
+                  <strong>66%</strong>
+                </div>
+              </section>
+            </div>
+
+            <div class="insight">
+              <h4>この結果から分かったこと</h4>
+              <p>
+                新手法を含む論文の割合は，採択論文と不採択論文でほぼ同じでした．
+                また，Spotlight・Oralへの到達率にも大きな差はありません．
+                新手法は新規性や方法論として評価されやすくなる一方で，その妥当性に対する批判も増えるため，利点とリスクが相殺されていると考えられます．
+                データセット論文では，無理に手法を追加するよりも，データ資源そのものの必要性，品質，評価を深く作り込むことが重要です．
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3．Poster／Spotlight／Oral -->
+        <article class="analysis-block">
+          <h3>3．PosterからSpotlight／Oralへ：上位は「作り込みの深さ」で差がつく</h3>
+          <p class="analysis-note">
+            各割合は，それぞれの発表区分において，該当要素が肯定的に評価された割合です．
+          </p>
+
+          <div class="analysis-layout">
+            <div>
+              <div class="tier-legend" aria-label="発表区分の凡例">
+                <span><i class="legend-dot poster-color"></i>Poster</span>
+                <span><i class="legend-dot spotlight-color"></i>Spotlight</span>
+                <span><i class="legend-dot oral-color"></i>Oral</span>
+              </div>
+
+              <div class="tier-chart">
+                <!-- 数値を変更するときは，styleのwidthと右端の表示値を同じ値にしてください． -->
+                <section class="tier-group">
+                  <h4>新規性</h4>
+                  <div class="tier-bar-row"><span>Poster</span><span class="tier-track"><span class="tier-fill poster-color" style="width:59%"></span></span><strong>59%</strong></div>
+                  <div class="tier-bar-row"><span>Spotlight</span><span class="tier-track"><span class="tier-fill spotlight-color" style="width:58%"></span></span><strong>58%</strong></div>
+                  <div class="tier-bar-row"><span>Oral</span><span class="tier-track"><span class="tier-fill oral-color" style="width:50%"></span></span><strong>50%</strong></div>
+                </section>
+
+                <section class="tier-group">
+                  <h4>評価の厳密さ</h4>
+                  <div class="tier-bar-row"><span>Poster</span><span class="tier-track"><span class="tier-fill poster-color" style="width:45%"></span></span><strong>45%</strong></div>
+                  <div class="tier-bar-row"><span>Spotlight</span><span class="tier-track"><span class="tier-fill spotlight-color" style="width:57%"></span></span><strong>57%</strong></div>
+                  <div class="tier-bar-row"><span>Oral</span><span class="tier-track"><span class="tier-fill oral-color" style="width:56%"></span></span><strong>56%</strong></div>
+                </section>
+
+                <section class="tier-group">
+                  <h4>アノテーション品質</h4>
+                  <div class="tier-bar-row"><span>Poster</span><span class="tier-track"><span class="tier-fill poster-color" style="width:24%"></span></span><strong>24%</strong></div>
+                  <div class="tier-bar-row"><span>Spotlight</span><span class="tier-track"><span class="tier-fill spotlight-color" style="width:23%"></span></span><strong>23%</strong></div>
+                  <div class="tier-bar-row"><span>Oral</span><span class="tier-track"><span class="tier-fill oral-color" style="width:44%"></span></span><strong>44%</strong></div>
+                </section>
+              </div>
+            </div>
+
+            <div class="insight">
+              <h4>この結果から分かったこと</h4>
+              <p>
+                新規性はすべての発表区分で高く評価されていますが，PosterからOralに進むほど割合が上がるわけではなく，上位発表を分ける決定的な要素とは言い切れません．
+                一方，評価の厳密さはSpotlight・Oralで高く，アノテーション品質はOralで大きく上昇しています．
+                つまり，上位発表を目指すには，アイデアの新しさに加えて，評価設計とアノテーション工程をどこまで丁寧に作り込んだかが重要だと考えられます．
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <div class="notice">
+          <strong>解釈上の注意：</strong>
+          本分析はOpenReview上の記述を集計したものであり，各要素と採否の因果関係を直接証明するものではありません．
+          査読でどのような特徴が評価される傾向にあるかを把握するための結果としてご覧ください．
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         文献リスト
+         文献データは，ページ末尾のJavaScript内にある paperData を編集します．
+         HTMLの表を直接編集する必要はありません．
+         ======================================================= -->
+    <section class="section" id="papers">
+      <div class="container">
+        <span class="eyebrow">Literature Survey</span>
+        <h2 class="section-heading">データセット論文の文献リスト</h2>
+        <p class="section-lead">
+          調査した論文を，タイトル，著者，会議名，発行年，データの種類，タスク，URL，分かりやすい点の観点から整理します．
+          キーワード検索と複数条件の組合せによる絞り込みが可能です．
+        </p>
+
+        <div class="filter-panel" aria-label="文献の検索と絞り込み">
+          <div class="filter-grid">
+            <div class="field search-field">
+              <label for="paper-search">キーワード検索</label>
+              <input
+                id="paper-search"
+                type="search"
+                placeholder="タイトル，著者，特徴などを検索"
+                autocomplete="off">
+            </div>
+
+            <div class="field">
+              <label for="venue-filter">会議名</label>
+              <select id="venue-filter">
+                <option value="">すべて</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="year-filter">発行年</label>
+              <select id="year-filter">
+                <option value="">すべて</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="data-type-filter">データの種類</label>
+              <select id="data-type-filter">
+                <option value="">すべて</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="task-filter">タスク</label>
+              <select id="task-filter">
+                <option value="">すべて</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-footer">
+            <p class="result-count" id="result-count" aria-live="polite"></p>
+            <button class="reset-button" id="reset-filters" type="button">検索条件をリセット</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>タイトル</th>
+                <th>著者</th>
+                <th>会議名</th>
+                <th>発行年</th>
+                <th>データの種類</th>
+                <th>タスク</th>
+                <th>URL</th>
+                <th>分かりやすい点</th>
+              </tr>
+            </thead>
+            <tbody id="paper-table-body"></tbody>
+          </table>
+          <div class="empty-state" id="empty-state">
+            条件に一致する文献がありません．
+          </div>
+        </div>
+
+        <div class="code-note">
+          <strong>文献の追加方法：</strong>
+          このHTMLファイルの末尾にある <code>paperData</code> 配列へ，コメント内の記入例をコピーして追加してください．
+          フィルターの選択肢は，登録された文献情報から自動的に生成されます．
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         データセット論文を構成する3段階
+         内容はポスターの「構築前」「構築中」「構築後」に対応します．
+         ======================================================= -->
+    <section class="section alt" id="guidelines">
+      <div class="container">
+        <span class="eyebrow">Before / During / After</span>
+        <h2 class="section-heading">データセット論文を作り込む3つの段階</h2>
+        <p class="section-lead">
+          採択されるデータセット論文を書くためには，収集したデータを提示するだけでなく，
+          構築前の問題設定から構築後の公開・利用までを一貫して設計する必要があります．
+        </p>
+
+        <div class="stage-grid">
+          <article class="card">
+            <span class="stage-number">1</span>
+            <h3>構築前：必要性を明確化する</h3>
+            <ul>
+              <li>従来手法の性能上の限界を示す．</li>
+              <li>既存データセットの収集・撮像・アノテーション上の問題を示す．</li>
+              <li>データ数，カテゴリ，環境などの不足を具体的に示す．</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="stage-number">2</span>
+            <h3>構築中：再現性と品質を示す</h3>
+            <ul>
+              <li>本文には収集・アノテーション方法の要点を書く．</li>
+              <li>Supplementary Materialには詳細設定や実装条件を書く．</li>
+              <li>ツール，作業者，パイプライン，品質評価を明示する．</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="stage-number">3</span>
+            <h3>構築後：分析し，利用へつなげる</h3>
+            <ul>
+              <li>データ例，分布，多様性，メタデータを分析する．</li>
+              <li>既存データセットと規模・品質・タスクを比較する．</li>
+              <li>プロジェクトページ，導入手順，サンプルコードを整備する．</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         ポスターPDF
+         PDFを差し替える場合は，同じファイル名で上書きするか，
+         href と data の2か所を新しいパスに変更してください．
+         ======================================================= -->
+    <section class="section" id="poster">
+      <div class="container">
+        <span class="eyebrow">Poster</span>
+        <h2 class="section-heading">発表ポスター</h2>
+        <p class="section-lead">
+          MIRU2026 若手プログラムで作成したポスターを，ブラウザ上で閲覧またはPDFとして開くことができます．
+        </p>
+
+        <div class="poster-layout">
+          <div class="poster-preview">
+            <object
+              data="static/pdfs/miru2026_dataset_poster.pdf"
+              type="application/pdf"
+              aria-label="MIRU2026 若手プログラム データセット構築研究 発表ポスター">
+              <p>
+                このブラウザではPDFを埋め込み表示できません．
+                <a href="static/pdfs/miru2026_dataset_poster.pdf">ポスターPDFを開いてください．</a>
+              </p>
+            </object>
+          </div>
+
+          <aside class="poster-info">
+            <h3>採択されるデータセット論文を書くために</h3>
+            <p>
+              OpenReviewの統計分析と，データセット構築の各段階で重視すべき点を1枚にまとめています．
+            </p>
+            <p>
+              発表：MIRU2026 若手プログラム<br>
+              チーム：データセット構築研究
+            </p>
+            <a
+              class="button"
+              href="static/pdfs/miru2026_dataset_poster.pdf"
+              target="_blank"
+              rel="noopener noreferrer">
+              ポスターPDFを別タブで開く
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         更新履歴
+         更新するたびに li 要素を先頭へ追加してください．
+         ======================================================= -->
+    <section class="section alt" id="updates">
+      <div class="container narrow">
+        <span class="eyebrow">Updates</span>
+        <h2 class="section-heading">更新履歴</h2>
+        <ul>
+          <li><time datetime="2026-07-29">2026-07-29</time>　プロジェクトページを作成し，OpenReview分析，文献検索機能，ポスターPDFを追加．</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>MIRU2026 若手プログラム「データセット構築研究」チーム</p>
+      <!-- 連絡先を掲載する場合は，以下を編集してコメントを外してください．
+      <p>Contact: <a href="mailto:YOUR_EMAIL_ADDRESS">YOUR_EMAIL_ADDRESS</a></p>
+      -->
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scroll-top" type="button" aria-label="ページ上部へ戻る">↑</button>
+
+  <script>
+    "use strict";
+
+    /* =========================================================
+       文献データの編集場所
+
+       1．下の paperData = [ ... ] の中に文献情報を追加してください．
+       2．1件につき { ... } を1つ使用し，文献と文献の間はカンマで区切ります．
+       3．venue，year，dataType，task の値から，フィルター項目が自動生成されます．
+       4．URLがない場合は url: "" としてください．
+
+       記入例：
+       {
+         title: "論文タイトル",
+         authors: "著者1, 著者2, 著者3",
+         venue: "CVPR",
+         year: "2026",
+         dataType: "動画・セグメンテーションマスク",
+         task: "ロボットセグメンテーション",
+         url: "https://example.com/paper",
+         easyPoint: "データ収集装置の構成図と，アノテーション工程が分かりやすい．"
+       }
+       ========================================================= */
+    const paperData = [
+      /*
+      上の記入例をコピーし，この位置に実際の文献を追加してください．
+      複数件追加する場合は，それぞれの } の後にカンマを付けます．
+      */
+    ];
+
+    /* =========================================================
+       ここから下は検索・表示機能のプログラムです．
+       文献を追加するだけであれば，通常は編集する必要はありません．
+       ========================================================= */
+    const tableBody = document.getElementById("paper-table-body");
+    const emptyState = document.getElementById("empty-state");
+    const resultCount = document.getElementById("result-count");
+    const searchInput = document.getElementById("paper-search");
+    const venueFilter = document.getElementById("venue-filter");
+    const yearFilter = document.getElementById("year-filter");
+    const dataTypeFilter = document.getElementById("data-type-filter");
+    const taskFilter = document.getElementById("task-filter");
+    const resetButton = document.getElementById("reset-filters");
+
+    function normalizeText(value) {
+      return String(value ?? "")
+        .normalize("NFKC")
+        .toLocaleLowerCase("ja-JP")
+        .trim();
+    }
+
+    function uniqueSortedValues(key, numericDescending = false) {
+      const values = [...new Set(
+        paperData
+          .map((paper) => String(paper[key] ?? "").trim())
+          .filter(Boolean)
+      )];
+
+      if (numericDescending) {
+        return values.sort((a, b) => Number(b) - Number(a));
+      }
+
+      return values.sort((a, b) => a.localeCompare(b, "ja"));
+    }
+
+    function addOptions(selectElement, values) {
+      values.forEach((value) => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        selectElement.appendChild(option);
+      });
+    }
+
+    function initializeFilters() {
+      addOptions(venueFilter, uniqueSortedValues("venue"));
+      addOptions(yearFilter, uniqueSortedValues("year", true));
+      addOptions(dataTypeFilter, uniqueSortedValues("dataType"));
+      addOptions(taskFilter, uniqueSortedValues("task"));
+    }
+
+    function createCell(text, className = "") {
+      const cell = document.createElement("td");
+      cell.textContent = text || "—";
+      if (className) {
+        cell.className = className;
+      }
+      return cell;
+    }
+
+    function createLinkCell(url) {
+      const cell = document.createElement("td");
+
+      if (!url) {
+        cell.textContent = "—";
+        return cell;
+      }
+
+      try {
+        const parsedUrl = new URL(url);
+        if (!["http:", "https:"].includes(parsedUrl.protocol)) {
+          throw new Error("Unsupported URL protocol");
+        }
+
+        const link = document.createElement("a");
+        link.className = "paper-link";
+        link.href = parsedUrl.href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Paper";
+        cell.appendChild(link);
+      } catch (error) {
+        cell.textContent = "URLを確認してください";
+      }
+
+      return cell;
+    }
+
+    function renderPapers(papers) {
+      tableBody.replaceChildren();
+
+      papers.forEach((paper) => {
+        const row = document.createElement("tr");
+        row.appendChild(createCell(paper.title, "paper-title"));
+        row.appendChild(createCell(paper.authors, "authors-cell"));
+        row.appendChild(createCell(paper.venue));
+        row.appendChild(createCell(paper.year));
+        row.appendChild(createCell(paper.dataType));
+        row.appendChild(createCell(paper.task));
+        row.appendChild(createLinkCell(paper.url));
+        row.appendChild(createCell(paper.easyPoint, "easy-point-cell"));
+        tableBody.appendChild(row);
+      });
+
+      emptyState.style.display = papers.length === 0 ? "block" : "none";
+      resultCount.textContent = `全${paperData.length}件中 ${papers.length}件を表示`;
+    }
+
+    function filterPapers() {
+      const keyword = normalizeText(searchInput.value);
+      const selectedVenue = venueFilter.value;
+      const selectedYear = yearFilter.value;
+      const selectedDataType = dataTypeFilter.value;
+      const selectedTask = taskFilter.value;
+
+      const filtered = paperData.filter((paper) => {
+        const searchableText = normalizeText([
+          paper.title,
+          paper.authors,
+          paper.venue,
+          paper.year,
+          paper.dataType,
+          paper.task,
+          paper.easyPoint
+        ].join(" "));
+
+        const matchesKeyword = !keyword || searchableText.includes(keyword);
+        const matchesVenue = !selectedVenue || paper.venue === selectedVenue;
+        const matchesYear = !selectedYear || String(paper.year) === selectedYear;
+        const matchesDataType = !selectedDataType || paper.dataType === selectedDataType;
+        const matchesTask = !selectedTask || paper.task === selectedTask;
+
+        return matchesKeyword && matchesVenue && matchesYear && matchesDataType && matchesTask;
+      });
+
+      renderPapers(filtered);
+    }
+
+    function resetFilters() {
+      searchInput.value = "";
+      venueFilter.value = "";
+      yearFilter.value = "";
+      dataTypeFilter.value = "";
+      taskFilter.value = "";
+      filterPapers();
+      searchInput.focus();
+    }
+
+    [searchInput, venueFilter, yearFilter, dataTypeFilter, taskFilter].forEach((element) => {
+      element.addEventListener(element === searchInput ? "input" : "change", filterPapers);
+    });
+    resetButton.addEventListener("click", resetFilters);
+
+    initializeFilters();
+    renderPapers(paperData);
+
+    /* OpenReview分析の棒グラフを data-percent から描画します． */
+    document.querySelectorAll(".metric-row[data-percent]").forEach((row) => {
+      const percent = Math.max(0, Math.min(100, Number(row.dataset.percent) || 0));
+      row.querySelector(".metric-fill").style.width = `${percent}%`;
+      row.querySelector(".metric-value").textContent = `${percent}%`;
+    });
+
+    /* ページ上部へ戻るボタン */
+    const scrollTopButton = document.getElementById("scroll-top");
+    window.addEventListener("scroll", () => {
+      scrollTopButton.classList.toggle("visible", window.scrollY > 500);
+    }, { passive: true });
+
+    scrollTopButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
