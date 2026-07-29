@@ -619,7 +619,9 @@
     }
 
     .table-wrap {
-      overflow-x: auto;
+      /* 文献数が増えてもページ全体が長くなりすぎないよう，表の中で縦横にスクロールします． */
+      max-height: 650px;
+      overflow: auto;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: #fff;
@@ -1087,7 +1089,7 @@
                 </div>
                 <div class="compare-item">
                   <div>
-                    <span class="compare-name">不採択（公開）</span>
+                    <span class="compare-name">不採択（公開情報のみ）</span>
                     <div class="compare-line"><span style="width:30%"></span></div>
                   </div>
                   <strong>30%</strong>
@@ -1692,10 +1694,24 @@
         .trim();
     }
 
-    function uniqueSortedValues(key, numericDescending = false) {
+    /*
+       データの種類・タスクに複数の項目がある場合は，カンマ等で分割して個別に扱います．
+       例："画像, 動画" は，フィルター上では「画像」と「動画」の2項目になります．
+    */
+    function splitFilterValues(value) {
+      return String(value ?? "")
+        .split(/[,、，;；\n]+/)
+        .map((item) => item.trim())
+        .filter(Boolean);
+    }
+
+    function uniqueSortedValues(key, numericDescending = false, splitValues = false) {
       const values = [...new Set(
         paperData
-          .map((paper) => String(paper[key] ?? "").trim())
+          .flatMap((paper) => {
+            const value = String(paper[key] ?? "").trim();
+            return splitValues ? splitFilterValues(value) : [value];
+          })
           .filter(Boolean)
       )];
 
@@ -1718,8 +1734,8 @@
     function initializeFilters() {
       addOptions(venueFilter, uniqueSortedValues("venue"));
       addOptions(yearFilter, uniqueSortedValues("year", true));
-      addOptions(dataTypeFilter, uniqueSortedValues("dataType"));
-      addOptions(taskFilter, uniqueSortedValues("task"));
+      addOptions(dataTypeFilter, uniqueSortedValues("dataType", false, true));
+      addOptions(taskFilter, uniqueSortedValues("task", false, true));
     }
 
     function createCell(text, className = "") {
@@ -1800,8 +1816,8 @@
         const matchesKeyword = !keyword || searchableText.includes(keyword);
         const matchesVenue = !selectedVenue || paper.venue === selectedVenue;
         const matchesYear = !selectedYear || String(paper.year) === selectedYear;
-        const matchesDataType = !selectedDataType || paper.dataType === selectedDataType;
-        const matchesTask = !selectedTask || paper.task === selectedTask;
+        const matchesDataType = !selectedDataType || splitFilterValues(paper.dataType).includes(selectedDataType);
+        const matchesTask = !selectedTask || splitFilterValues(paper.task).includes(selectedTask);
 
         return matchesKeyword && matchesVenue && matchesYear && matchesDataType && matchesTask;
       });
