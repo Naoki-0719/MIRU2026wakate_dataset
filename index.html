@@ -403,6 +403,7 @@
     }
 
     .metric-fill {
+      display: block;
       width: 0;
       height: 100%;
       border-radius: inherit;
@@ -967,7 +968,7 @@
           <article class="card">
             <h3>調査方法</h3>
             <p>
-              OpenReviewで評価された項目を集計するとともに，論文を「構築前」「構築中」「構築後」の3段階から分析し，
+              NeurIPSのOpenReviewで評価された項目を集計するとともに，論文を「構築前」「構築中」「構築後」の3段階から分析し，
               各段階で重視される記載内容を整理しました．
             </p>
           </article>
@@ -1009,7 +1010,7 @@
           </div>
           <div class="scope-item">
             <span class="scope-value">4,246</span>
-            <span class="scope-label">査読</span>
+            <span class="scope-label">査読レポート件数</span>
           </div>
         </div>
 
@@ -1021,7 +1022,7 @@
           </p>
 
           <div class="analysis-layout">
-            <div class="metric-list" aria-label="採択論文で称賛された要素">
+            <div class="metric-list" aria-label="採択論文で肯定的に評価された要素">
               <!-- 項目を追加するときは metric-row をコピーし，data-percent と名称を変更してください． -->
               <div class="metric-row" data-percent="59">
                 <span class="metric-label">新規性</span>
@@ -1029,22 +1030,22 @@
                 <span class="metric-value"></span>
               </div>
               <div class="metric-row" data-percent="46">
-                <span class="metric-label">評価の厳密さ</span>
+                <span class="metric-label">評価実験の厳密さ</span>
                 <span class="metric-track"><span class="metric-fill"></span></span>
                 <span class="metric-value"></span>
               </div>
               <div class="metric-row" data-percent="31">
-                <span class="metric-label">再現性・公開</span>
+                <span class="metric-label">データセットの公開</span>
                 <span class="metric-track"><span class="metric-fill"></span></span>
                 <span class="metric-value"></span>
               </div>
               <div class="metric-row" data-percent="27">
-                <span class="metric-label">実世界での有用性</span>
+                <span class="metric-label">実有用性</span>
                 <span class="metric-track"><span class="metric-fill"></span></span>
                 <span class="metric-value"></span>
               </div>
               <div class="metric-row" data-percent="25">
-                <span class="metric-label">規模</span>
+                <span class="metric-label">データセットの規模</span>
                 <span class="metric-track"><span class="metric-fill"></span></span>
                 <span class="metric-value"></span>
               </div>
@@ -1059,7 +1060,7 @@
               <h4>この結果から分かったこと</h4>
               <p>
                 新規性は最も多く評価されており，採択の土台となる重要な要素です．
-                しかし，評価の厳密さ，再現性・公開，実世界での有用性，規模，アノテーション品質も幅広く評価されています．
+                しかし，評価実験の厳密さ，データセットを公開しているか，実有用性，規模，アノテーション品質も幅広く評価されています．
                 したがって，独自性のあるデータを提示するだけでは不十分であり，厳密な検証と第三者が利用・再現できる形での公開を組み合わせることが重要です．
               </p>
             </div>
@@ -1070,13 +1071,13 @@
         <article class="analysis-block">
           <h3>2．データのみ／新手法も提案：手法を足しても「得」にならない</h3>
           <p class="analysis-note">
-            新手法を提案した論文と，データ資源を主貢献とする論文を比較しています．
+            新手法も提案した論文と，データセットのみを主貢献とする論文を比較しています．
           </p>
 
           <div class="analysis-layout">
             <div class="compare-grid">
               <section class="compare-card">
-                <h4>手法を提案した論文の割合</h4>
+                <h4>手法も提案した論文の割合</h4>
                 <div class="compare-item">
                   <div>
                     <span class="compare-name">採択 956本</span>
@@ -1104,7 +1105,7 @@
                 </div>
                 <div class="compare-item">
                   <div>
-                    <span class="compare-name">資源のみ</span>
+                    <span class="compare-name">データセットのみ</span>
                     <div class="compare-line"><span style="width:13.4%"></span></div>
                   </div>
                   <strong>13.4%</strong>
@@ -1122,7 +1123,7 @@
                 </div>
                 <div class="compare-item">
                   <div>
-                    <span class="compare-name">資源のみ</span>
+                    <span class="compare-name">データセットのみ</span>
                     <div class="compare-line"><span style="width:63%"></span></div>
                   </div>
                   <strong>63%</strong>
@@ -1140,7 +1141,7 @@
                 </div>
                 <div class="compare-item">
                   <div>
-                    <span class="compare-name">資源のみ</span>
+                    <span class="compare-name">データセットのみ</span>
                     <div class="compare-line"><span style="width:66%"></span></div>
                   </div>
                   <strong>66%</strong>
@@ -1152,9 +1153,9 @@
               <h4>この結果から分かったこと</h4>
               <p>
                 新手法を含む論文の割合は，採択論文と不採択論文でほぼ同じでした．
-                また，Spotlight・Oralへの到達率にも大きな差はありません．
+                また，Spotlight・Oralへの採択率にも大きな差はありません．
                 新手法は新規性や方法論として評価されやすくなる一方で，その妥当性に対する批判も増えるため，利点とリスクが相殺されていると考えられます．
-                データセット論文では，無理に手法を追加するよりも，データ資源そのものの必要性，品質，評価を深く作り込むことが重要です．
+                データセット論文では，無理に手法を追加するよりも，データセットそのものの必要性，品質，評価を深く作り込むことが重要です．
               </p>
             </div>
           </div>
@@ -1205,7 +1206,7 @@
               <p>
                 新規性はすべての発表区分で高く評価されていますが，PosterからOralに進むほど割合が上がるわけではなく，上位発表を分ける決定的な要素とは言い切れません．
                 一方，評価の厳密さはSpotlight・Oralで高く，アノテーション品質はOralで大きく上昇しています．
-                つまり，上位発表を目指すには，アイデアの新しさに加えて，評価設計とアノテーション工程をどこまで丁寧に作り込んだかが重要だと考えられます．
+                つまり，上位発表を目指すには，データセットの新しさに加えて，評価設計とアノテーション工程をどこまで丁寧に作り込んだかが重要だと考えられます．
               </p>
             </div>
           </div>
@@ -1299,12 +1300,7 @@
             条件に一致する文献がありません．
           </div>
         </div>
-
-        <div class="code-note">
-          <strong>文献の追加方法：</strong>
-          このHTMLファイルの末尾にある <code>paperData</code> 配列へ，コメント内の記入例をコピーして追加してください．
-          フィルターの選択肢は，登録された文献情報から自動的に生成されます．
-        </div>
+        
       </div>
     </section>
 
@@ -1317,7 +1313,7 @@
         <span class="eyebrow">Before / During / After</span>
         <h2 class="section-heading">データセット論文を作り込む3つの段階</h2>
         <p class="section-lead">
-          採択されるデータセット論文を書くためには，収集したデータを提示するだけでなく，
+          採択されるデータセット論文を書くためには，データセットを提示するだけでなく，
           構築前の問題設定から構築後の公開・利用までを一貫して設計する必要があります．
         </p>
 
@@ -1338,7 +1334,7 @@
             <ul>
               <li>本文には収集・アノテーション方法の要点を書く．</li>
               <li>Supplementary Materialには詳細設定や実装条件を書く．</li>
-              <li>ツール，作業者，パイプライン，品質評価を明示する．</li>
+              <li>使用したツール，作業者，パイプライン，品質評価の方法を明示する．</li>
             </ul>
           </article>
 
