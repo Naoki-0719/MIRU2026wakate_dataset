@@ -1449,22 +1449,226 @@
        }
        ========================================================= */
     const paperData = [
-      /*
-      上の記入例をコピーし，この位置に実際の文献を追加してください．
-      複数件追加する場合は，それぞれの } の後にカンマを付けます．
-      */
-      {
-        title: "The MVTec AD 2 Dataset: Advanced Scenarios for Unsupervised Anomaly Detection",
-         authors: "Heckler-Kram++",
-         venue: "IJCV",
-         year: "2026",
-         dataType: "画像",
-         task: "Anomaly Detection",
-         url: "https://link.springer.com/article/10.1007/s11263-026-02743-0",
-         easyPoint: "既存データセットとの違いが様々な観点で比較されている."
-      }
-
-      
+          {
+                "title": "The MVTec AD 2 Dataset: Advanced Scenarios for Unsupervised Anomaly Detection",
+                "authors": "Heckler-Kram, L., et al.",
+                "venue": "International Journal of Computer Vision",
+                "year": "2026",
+                "dataType": "画像",
+                "task": "Anomaly Detection",
+                "url": "https://link.springer.com/article/10.1007/s11263-026-02743-0",
+                "easyPoint": "既存データセットとの差分，先行研究の課題，画像例，撮影方法，SOTA評価を通して，データセットの必要性と難しさを明確に示している．"
+          },
+          {
+                "title": "The SA-FARI Dataset: Segment Anything in Footage of Animals for Recognition and Identification",
+                "authors": "Dante Francisco Wasmuht et al",
+                "venue": "CVPR (Oral)",
+                "year": "2026",
+                "dataType": "画像",
+                "task": "Anomaly Detection, Segmentation, Tracking",
+                "url": "https://arxiv.org/abs/2511.15622",
+                "easyPoint": "Fig. 1だけでデータセットの全体像と特徴を把握できる点が分かりやすい．"
+          },
+          {
+                "title": "HandX: Scaling Bimanual Motion and Interaction Generation",
+                "authors": "Zimu Zhang et al",
+                "venue": "CVPR",
+                "year": "2026",
+                "dataType": "Motion, テキスト, 画像",
+                "task": "Motion Generation",
+                "url": "https://handx-project.github.io/",
+                "easyPoint": "Fig. 1と比較表・グラフで特徴を整理し，プロジェクトページ上の豊富なサンプルで内容を直感的に確認できる．"
+          },
+          {
+                "title": "Towards Dynamic 3D Reconstruction of Hand-Instrument Interaction in Ophthalmic Surgery",
+                "authors": "Ming Hu et al",
+                "venue": "NeurIPS (Spotlight)",
+                "year": "2025",
+                "dataType": "Hand Pose, Object Pose, 画像",
+                "task": "Hand Pose Estimation",
+                "url": "https://ophnet-3d.github.io/",
+                "easyPoint": "Supplementary Materialが充実しており，提案内容や実験条件の詳細を確認しやすい．"
+          },
+          {
+                "title": "MANTA: A Large-Scale Multi-View and Visual-Text Anomaly Detection Dataset for Tiny Objects",
+                "authors": "Lei Fan et al",
+                "venue": "CVPR",
+                "year": "2025",
+                "dataType": "テキスト, 画像",
+                "task": "Anomaly Detection",
+                "url": "https://openaccess.thecvf.com/content/CVPR2025/html/Fan_MANTA_A_Large-Scale_Multi-View_and_Visual-Text_Anomaly_Detection_Dataset_for_CVPR_2025_paper.html",
+                "easyPoint": "1ページ目の概要図，既存データセットとの比較，画像例，撮影方法，既存手法による評価を通して，特徴と難しさを分かりやすく示している．"
+          },
+          {
+                "title": "Real-IAD: A Real-World Multi-View Dataset for Benchmarking Versatile Industrial Anomaly Detection",
+                "authors": "Chengjie Wang et al",
+                "venue": "CVPR",
+                "year": "2024",
+                "dataType": "画像",
+                "task": "Anomaly Detection",
+                "url": "https://realiad4ad.github.io/Real-IAD/",
+                "easyPoint": "既存データセットとの差分，先行研究の課題，画像例，撮影方法，SOTA評価を通して，データセットの必要性と難しさを明確に示している．"
+          },
+          {
+                "title": "Scaling Up Dynamic Human-Scene Interaction Modeling",
+                "authors": "https://jnnan.github.io/1,2*, https://zhiyuan-zhang0206.github.io/1,2*, https://pku.ai/author/hongjie-li/1, https://shirleymaxx.github.io/3, https://silvester.wang/4,https://yixchen.github.io/2, https://tengyu.ai/2, https://yzhu.io/1✉️, https://siyuanhuang.com/2✉️,1Institute for AI, Peking University 2National Key Lab of General AI, BIGAI 3School of Computer Science, CFCS, Peking University4Beijing Institute of Technology * Indicates Equal Contribution ✉️ Indicates Corresponding Author",
+                "venue": "CVPR (Highlight)",
+                "year": "2024",
+                "dataType": "3Dメッシュ, Motion, テキスト, 動画",
+                "task": "Motion Generation",
+                "url": "https://jnnan.github.io/trumans/",
+                "easyPoint": "Fig. 1の視覚的な訴求力，Table 2の比較，新手法と豊富な実験，ヒューマンスタディにより，貢献を多面的に示している．"
+          },
+          {
+                "title": "BEDLAM2.0: Synthetic Humans and Cameras in Motion",
+                "authors": "https://is.mpg.de/ps/person/jtesch1 https://is.mpg.de/ps/person/gbecherini1 https://is.mpg.de/ps/person/pachar1 https://is.mpg.de/ps/person/ayiannakidis1 https://is.mpg.de/ps/person/mkocabas2 https://pixelite1201.github.io/2 https://is.mpg.de/ps/person/black1 1Max Planck Institute for Intelligent Systems, Tübingen, Germany 2Meshcapade GmbH",
+                "venue": "NeurIPS (Oral)",
+                "year": "2025",
+                "dataType": "Motion, 動画",
+                "task": "Motion Estimation",
+                "url": "https://bedlam2.is.tuebingen.mpg.de/",
+                "easyPoint": "Fig. 1・2で既存研究からの改善点とデータセットの特徴を示し，実験設定と意図も明瞭である．"
+          },
+          {
+                "title": "Are we ready for autonomous driving? The KITTI vision benchmark suite",
+                "authors": "Andreas Geiger and Philip Lenz",
+                "venue": "CVPR",
+                "year": "2012",
+                "dataType": "LiDAR, 位置情報, 画像",
+                "task": "Object Detection, Optical flow, SLAM・Odometry, Stereo Matching",
+                "url": "https://www.cvlibs.net/datasets/kitti/",
+                "easyPoint": "大規模性と幅広い対象タスクに加え，従来データセットで高精度だった手法の性能低下を示すことで，実世界データの多様性と難しさを明確にしている．"
+          },
+          {
+                "title": "SemanticKITTI: A Dataset for Semantic Scene Understanding of LiDAR Sequences",
+                "authors": "Jens Behley, Martin Garbade, Andres Milioto, Jan Quenzel, Sven Behnke, Cyrill Stachniss, Juergen Gall",
+                "venue": "ICCV",
+                "year": "2019",
+                "dataType": "LiDAR, 位置情報",
+                "task": "Scene Completion, Segmentation",
+                "url": "https://semantic-kitti.org/",
+                "easyPoint": "Fig. 1で高密度アノテーションを直感的に示し，連続シーケンスの必要性とアノテーション工程を詳細に説明している．"
+          },
+          {
+                "title": "Spotting the Unexpected (STU): A 3D LiDAR Dataset for Anomaly Segmentation in Autonomous Driving",
+                "authors": "Alexey Nekrasov, Malcolm Burdorf , Stewart Worrall, Bastian Leibe, Julie Stephany Berrio Perez",
+                "venue": "CVPR",
+                "year": "2025",
+                "dataType": "LiDAR, 画像",
+                "task": "Anomaly Detection, Segmentation",
+                "url": "https://cvpr.thecvf.com/virtual/2025/poster/33129",
+                "easyPoint": "整理されたTable 1と既存手法の限界を示す実験により，データセットの必要性を論理的に説明している．"
+          },
+          {
+                "title": "Rethinking of Radar’s Role: A Camera-Radar Dataset and Systematic Annotator via Coordinate Alignment",
+                "authors": "Yizhou Wang, Gaoang Wang, Hung-Min Hsu, Hui Liu, Jenq-Neng Hwang",
+                "venue": "CVPRW",
+                "year": "2021",
+                "dataType": "Radar, 画像",
+                "task": "Object Detection",
+                "url": "https://arxiv.org/abs/2105.05207",
+                "easyPoint": "不足していたRadarデータへの自動アノテーションと実験結果を通して，データセットの研究価値と可能性を示している．"
+          },
+          {
+                "title": "3CAD: A Large-Scale Real-World 3C Product Dataset for Unsupervised Anomaly Detection",
+                "authors": "Enquan Yang et al",
+                "venue": "AAAI",
+                "year": "2025",
+                "dataType": "画像",
+                "task": "Anomaly Detection",
+                "url": "https://ojs.aaai.org/index.php/AAAI/article/view/32993",
+                "easyPoint": "既存データセットとの比較，先行研究の課題，画像例，SOTA評価を通して，データセットの特徴と難しさを分かりやすく示している．"
+          },
+          {
+                "title": "Towards Foundational Models for Single-Chip Radar",
+                "authors": "Tianshu Huang, Akarsh Prabhakara, Chuhan Chen, Jay Karhade, Deva Ramanan, Matthew O'Toole, Anthony Rowe",
+                "venue": "ICCV",
+                "year": "2025",
+                "dataType": "LiDAR, Radar, 位置情報, 画像",
+                "task": "Classification, SLAM・Odometry, Segmentation",
+                "url": "https://ieeexplore.ieee.org/document/11445271",
+                "easyPoint": "低コストなデバイス構成，データ量と性能の関係，既存タスクでの改善を示し，大規模Radarデータセットの実用性と有効性を説明している．"
+          },
+          {
+                "title": "SiM3D: Single-instance Multiview Multimodal and Multisetup 3D Anomaly Detection Benchmark",
+                "authors": "Alex Costanzino et al",
+                "venue": "ICCV",
+                "year": "2025",
+                "dataType": "3Dメッシュ, 点群, 画像",
+                "task": "Anomaly Detection",
+                "url": "https://openaccess.thecvf.com/content/ICCV2025/html/Costanzino_SiM3D_Single-instance_Multiview_Multimodal_and_Multisetup_3D_Anomaly_Detection_Benchmark_ICCV_2025_paper.html",
+                "easyPoint": "1ページ目の概要図，既存データセットとの比較，データ例，撮影方法，既存手法による評価を通して，特徴と難しさを分かりやすく示している．"
+          },
+          {
+                "title": "BDD100K: A Diverse Driving Dataset for Heterogeneous Multitask Learning",
+                "authors": "Fisher Yu",
+                "venue": "CVPR",
+                "year": "2020",
+                "dataType": "位置情報, 動画, 画像",
+                "task": "Object Detection, Segmentation, Tracking",
+                "url": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Yu_BDD100K_A_Diverse_Driving_Dataset_for_Heterogeneous_Multitask_Learning_CVPR_2020_paper.pdf",
+                "easyPoint": "分かりやすかった点はCSVに記載されていない．"
+          },
+          {
+                "title": "TruckDrive: Long-Range Autonomous Highway Driving Dataset",
+                "authors": "Filippo Ghilotti et al",
+                "venue": "CVPR",
+                "year": "2026",
+                "dataType": "LiDAR, Radar, 画像",
+                "task": "Depth Estimation, Object Detection",
+                "url": "https://torc-ai.github.io/TruckDrive/",
+                "easyPoint": "色の濃さを用いたデータ量比較，Fig. 1の距離範囲比較，充実したSupplementary Materialにより，データセットの特徴を把握しやすい．"
+          },
+          {
+                "title": "LiSu: A Dataset and Method for LiDAR Surface Normal Estimation",
+                "authors": "Dušan Malić, Christian Fruhwirth-Reisinger, Samuel Schulter, Horst Possegger",
+                "venue": "CVPR",
+                "year": "2025",
+                "dataType": "LiDAR, 法線ベクトル",
+                "task": "Normal Estimation",
+                "url": "https://openaccess.thecvf.com/content/CVPR2025/html/Malic_LiSu_A_Dataset_and_Method_for_LiDAR_Surface_Normal_Estimation_CVPR_2025_paper.html",
+                "easyPoint": "図の品質と定性評価に加え，実世界データへの汎化結果によって，作成したデータセットの正当性を明確に示している．"
+          },
+          {
+                "title": "RobotSeg: A Model and Dataset for Segmenting Robots in Image and Video",
+                "authors": "Haiyang Mei ⋅ Qiming Huang ⋅ Hai Ci ⋅ Mike Zheng Shou",
+                "venue": "CVPR",
+                "year": "2026",
+                "dataType": "動画, 画像",
+                "task": "Segmentation",
+                "url": "https://cvpr.thecvf.com/virtual/2026/poster/37373",
+                "easyPoint": "Fig. 1とTable 1で目的と既存データセットとの差を示し，データ例，新手法の性能，世界初という位置づけを分かりやすく提示している．"
+          },
+          {
+                "title": "OLATverse: A Large-scale Real-world Object Dataset with Precise Lighting Control",
+                "authors": "Xilong Zhou ⋅ Jianchun Chen ⋅ Pramod Rao ⋅ Timo Teufel ⋅ Linjie Lyu ⋅ Tigran Minasian ⋅ Oleksandr Sotnychenko ⋅ Xiaoxiao Long ⋅ Marc Habermann ⋅ Christian Theobalt",
+                "venue": "CVPR",
+                "year": "2026",
+                "dataType": "画像",
+                "task": "Inverse Rendering, Normal Estimation, Relighting, View Synthesis",
+                "url": "https://cvpr.thecvf.com/virtual/2026/poster/38221",
+                "easyPoint": "Fig. 1とTable 1，既存研究の課題，世界初という位置づけ，データセットの統計量を通して，特徴と必要性を明確に示している．"
+          },
+          {
+                "title": "3DRealCar: An In-the-wild RGB-D Car Dataset with 360-degree Views",
+                "authors": "Xiaobiao Du, Yida Wang, Haiyang Sun, Zhuojie Wu, Hongwei Sheng, Shuyun Wang, Jiaying Ying, Ming Lu, Tianqing Zhu, Kun Zhan, Xin Yu",
+                "venue": "CVPR",
+                "year": "2025",
+                "dataType": "Depth, 画像",
+                "task": "Object Detection, Segmentation, View Synthesis",
+                "url": "https://xiaobiaodu.github.io/3drealcar/",
+                "easyPoint": "データ分布と追加学習による性能向上，丁寧なアノテーションから得られた知見により，データセットの価値を示している．"
+          },
+          {
+                "title": "UrbanIng-V2X: A Large-Scale Multi-Vehicle, Multi-Infrastructure Dataset Across Multiple Intersections for Cooperative Perception",
+                "authors": "Karthikeyan Chandra Sekaran, Markus Geisler, Dominik Rößle, Adithya Mohan, Daniel Cremers, Wolfgang Utschick, Michael Botsch, Werner Huber, Torsten Schön",
+                "venue": "NeurIPS",
+                "year": "2025",
+                "dataType": "LiDAR, 位置情報, 画像, 赤外線カメラ",
+                "task": "Object Detection, Object Tracking, SLAM・Odometry",
+                "url": "https://thi-ad.github.io/urbaning/",
+                "easyPoint": "Table 1とポーラチャートで特徴を比較し，既存手法の低い検出精度を未解決課題として示している．"
+          }
     ];
 
     /* =========================================================
